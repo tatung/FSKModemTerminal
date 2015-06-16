@@ -150,7 +150,7 @@ public class MainActivity extends ActionBarActivity {
 		/// INIT FSK CONFIG
 		
 		try {
-			mConfig = new FSKConfig(FSKConfig.SAMPLE_RATE_44100, FSKConfig.PCM_16BIT, FSKConfig.CHANNELS_MONO, FSKConfig.SOFT_MODEM_MODE_4, FSKConfig.THRESHOLD_20P);
+			mConfig = new FSKConfig(FSKConfig.SAMPLE_RATE_44100, FSKConfig.PCM_16BIT, FSKConfig.CHANNELS_MONO, FSKConfig.SOFT_MODEM_MODE_2, FSKConfig.THRESHOLD_20P);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
