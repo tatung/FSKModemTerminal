@@ -48,15 +48,18 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public void run() {
-
+            Log.d("WaterLevel", "in mRecordFeed");
             while (mRecorder.getRecordingState() == AudioRecord.RECORDSTATE_RECORDING) {
 
                 short[] data = new short[mBufferSize / 2]; //the buffer size is in bytes
 
                 // gets the audio output from microphone to short array samples
                 mRecorder.read(data, 0, mBufferSize / 2);
+                Log.d("WaterLevel", "in mRecordFeed, in while, before appendSignal");
 
                 mDecoder.appendSignal(data);
+
+                Log.d("WaterLevel", "in mRecordFeed, in while, after appendSignal");
             }
         }
     };
@@ -131,6 +134,8 @@ public class MainActivity extends ActionBarActivity {
             e1.printStackTrace();
         }
 
+        Log.d("WaterLevel", "pass config");
+
         /// INIT FSK DECODER
 
         mDecoder = new FSKDecoder(mConfig, new FSKDecoder.FSKDecoderCallback() {
@@ -139,7 +144,30 @@ public class MainActivity extends ActionBarActivity {
             public void decoded(byte[] newData) {
 
                 final String text = new String(newData);
+                Log.d("WaterLevel", text);
 
+                runOnUiThread(new Runnable() {
+                    public void run() {
+
+                        mTerminal.setText(mTerminal.getText() + text);
+
+                        if (mScrollLock) {
+                            mScroll.fullScroll(ScrollView.FOCUS_DOWN);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void decoded(int[] newData) {
+
+                //final String text = new String(newData);
+                String tmp = "";
+                for(int d : newData){
+                    tmp += d + "\n";
+                }
+                final String text = tmp;
+                Log.d("WaterLevel2", text);
                 runOnUiThread(new Runnable() {
                     public void run() {
 
@@ -194,9 +222,11 @@ public class MainActivity extends ActionBarActivity {
             Thread thread = new Thread(mRecordFeed);
             thread.setPriority(Thread.MAX_PRIORITY);
             thread.start();
+            Log.d("WaterLevel", "start mRecordFeed");
         } else {
-            Log.i("FSKDecoder", "Please check the recorder settings, something is wrong!");
+            Log.d("FSKDecoder", "Please check the recorder settings, something is wrong!");
         }
+        Log.d("WaterLevel", "end Create");
     }
 
     @Override

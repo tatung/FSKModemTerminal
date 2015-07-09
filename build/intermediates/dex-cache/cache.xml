@@ -2,32 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/Data/bin/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/pre-dexed/debug/support-v4-19.1.0-397caf4f2a4489f8bc3860b28be8b3a5bba9cc6d.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/exploded-aar/FSKModemTerminal/androidfskmodem/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="dc172029430be129800ab313007027e2d230581b">
-        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/pre-dexed/debug/classes-0e3db7b38532e0f1769e26d32b0f40d6a299ac29.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data/bin/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-ffc0fbbd2d35a3e4dbe02dc41e1381c1e7684a23.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.0 rc2"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/classes-dcc73e09339a39e5906e8564d238118444b52373.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/classes-c688b6f3a4310b00ab1ec87627c0cf6a61501971.jar" />
     </item>
     <item
         jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
@@ -44,18 +23,39 @@
         <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/pre-dexed/debug/classes-824d616b47289c8fd019a6aef86107db0ca23724.jar" />
     </item>
     <item
-        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/classes-c688b6f3a4310b00ab1ec87627c0cf6a61501971.jar" />
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/classes-dcc73e09339a39e5906e8564d238118444b52373.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data/bin/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-ffc0fbbd2d35a3e4dbe02dc41e1381c1e7684a23.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/exploded-aar/FSKModemTerminal/androidfskmodem/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="dc172029430be129800ab313007027e2d230581b">
+        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/pre-dexed/debug/classes-0e3db7b38532e0f1769e26d32b0f40d6a299ac29.jar" />
     </item>
     <item
         jar="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/exploded-aar/FSKModemTerminal/androidfskmodem/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0 rc2"
-        sha1="dc172029430be129800ab313007027e2d230581b">
+        sha1="43dc773b8793589272ffe5c66a77fc428fb93b65">
         <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/waterlevel/build/intermediates/pre-dexed/debug/classes-f98ab3a33fdeb9bbd94a8cc4800590d0f7ba4976.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data/bin/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Volumes/Data-0/StudioProject/FSKModemTerminal/fSKModemTerminal/build/intermediates/pre-dexed/debug/support-v4-19.1.0-397caf4f2a4489f8bc3860b28be8b3a5bba9cc6d.jar" />
     </item>
 
 </items>

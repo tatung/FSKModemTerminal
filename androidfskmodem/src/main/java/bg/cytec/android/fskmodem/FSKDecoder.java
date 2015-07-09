@@ -23,7 +23,11 @@
 
 package bg.cytec.android.fskmodem;
 
+import android.util.Log;
+
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 
 public class FSKDecoder {
@@ -34,6 +38,8 @@ public class FSKDecoder {
 		 * @param newData
 		 */
 		public void decoded(byte[] newData);
+
+		public void decoded(int[] newData);
 	}
 	
 	/**
@@ -43,8 +49,9 @@ public class FSKDecoder {
 		
 		@Override
 		public void run() {
-
+			Log.d("WaterLevel", "Before" + mRunning + "");
 			while (mRunning) {
+				Log.d("WaterLevel", mRunning + "");
 				
 				synchronized (mSignal) {
 					
@@ -111,7 +118,7 @@ public class FSKDecoder {
 
 	// /
 
-	protected ByteBuffer mData;
+	protected IntBuffer mData;
 
 	protected int mDataLength = 0;
 	
@@ -151,6 +158,12 @@ public class FSKDecoder {
 			mCallback.decoded(data);
 		}
 	}
+
+	protected void notifyCallback(int[] data){
+		if (mCallback != null) {
+			mCallback.decoded(data);
+		}
+	}
 	
 	protected void start() {
 		if (!mRunning) {
@@ -166,6 +179,7 @@ public class FSKDecoder {
 			mThread = new Thread(mProcessor);
 			mThread.setPriority(Thread.MIN_PRIORITY);
 			mThread.start();
+			Log.d("WaterLevel", "start mProcessor");
 		}
 	}
 	
@@ -191,7 +205,7 @@ public class FSKDecoder {
 	}
 
 	protected void allocateBufferData() {
-		mData = ByteBuffer.allocate(FSKConfig.DECODER_DATA_BUFFER_SIZE); // maximum bytes
+		mData = IntBuffer.allocate(FSKConfig.DECODER_DATA_BUFFER_SIZE); // maximum bytes
 	}
 	
 	protected void nextStatus() {
@@ -284,6 +298,7 @@ public class FSKDecoder {
 	 * @return samples space left in the buffer
 	 */
 	public int appendSignal(short[] data) {
+		Log.d("WaterLevel", "in appendSignal");
 		
 		synchronized (mSignal) {
 			short[] monoData;
@@ -426,11 +441,14 @@ public class FSKDecoder {
 	}
 	
 	protected void flushData() {
+		Log.d("WaterLevel", "Start");
 		if (mDataLength > 0) {
-			byte[] data = new byte[mDataLength];
+			int[] data = new int[mDataLength];
+			Log.d("WaterLevel", "Before For");
 			
 			for (int i = 0; i < mDataLength; i++) {
 				data[i] = mData.get(i);
+				Log.d("WaterLevel", data[i] + "");
 			}
 			
 			allocateBufferData();
@@ -444,6 +462,7 @@ public class FSKDecoder {
 	///
 	
 	protected void processIterationSearch() {
+		Log.d("WaterLevel", "in processIterationSearch");
 		if (mSignalPointer <= mSignalEnd-mConfig.samplesPerBit) {
 			
 			short[] frameData = getFrameData(mSignalPointer);
@@ -479,6 +498,7 @@ public class FSKDecoder {
 	}
 	
 	protected void processIterationDecode() {
+		Log.d("WaterLevel", "in processIterationDecode");
 		
 		if (mSignalPointer <= mSignalEnd-mConfig.samplesPerBit) {
 	
@@ -507,8 +527,8 @@ public class FSKDecoder {
 				//end bit
 				
 				try {
-					mData.put((byte) Integer.parseInt(mBitBuffer.toString(), 2));
-					
+					mData.put((int) Integer.parseInt(mBitBuffer.toString(), 2));
+
 					mDataLength++;
 					
 					if (mDataLength == mData.capacity()) {
