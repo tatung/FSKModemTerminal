@@ -19,7 +19,10 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.akg.sensprout.waterlevel.utils.ByteQueue;
+
 import java.io.IOException;
+import java.util.ArrayDeque;
 
 import bg.cytec.android.fskmodem.FSKConfig;
 import bg.cytec.android.fskmodem.FSKDecoder;
@@ -131,25 +134,43 @@ public class MainActivity extends ActionBarActivity {
             e1.printStackTrace();
         }
 
+        final ByteQueue bQueue = new ByteQueue(4);
         /// INIT FSK DECODER
-
         mDecoder = new FSKDecoder(mConfig, new FSKDecoder.FSKDecoderCallback() {
 
             @Override
             public void decoded(byte[] newData) {
-
-                final String text = new String(newData);
-
-                runOnUiThread(new Runnable() {
-                    public void run() {
-
-                        mTerminal.setText(mTerminal.getText() + text);
-
-                        if (mScrollLock) {
-                            mScroll.fullScroll(ScrollView.FOCUS_DOWN);
-                        }
+                try {
+                    for (byte i : newData) {
+                        bQueue.enqueue(i);
                     }
-                });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (bQueue.length() == 4) {
+                        int val = ((bQueue.dequeue() & 0xFF) << 0) |
+                                ((bQueue.dequeue() & 0xFF) << 8) |
+                                ((bQueue.dequeue() & 0xFF) << 16) |
+                                ((bQueue.dequeue() & 0xFF) << 24);
+
+                        final String text = val + "";
+
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                mTerminal.setText(mTerminal.getText() + text + "\n");
+
+                                if (mScrollLock) {
+                                    mScroll.fullScroll(ScrollView.FOCUS_DOWN);
+                                }
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
