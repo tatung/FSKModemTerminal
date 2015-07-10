@@ -49,10 +49,8 @@ public class FSKDecoder {
 		
 		@Override
 		public void run() {
-			Log.d("WaterLevel", "Before" + mRunning + "");
 			while (mRunning) {
-				Log.d("WaterLevel", mRunning + "");
-				
+
 				synchronized (mSignal) {
 					
 					switch (mDecoderStatus) {
@@ -134,8 +132,9 @@ public class FSKDecoder {
 
 		mCallback = callback;
 
-		mSignalBufferSize = mConfig.sampleRate; // 1 second buffer
-		
+//		mSignalBufferSize = mConfig.sampleRate; // 1 second buffer
+		mSignalBufferSize = mConfig.sampleRate * 8; // 8 second buffer
+
 		allocateBufferSignal();
 		
 		allocateBufferFrame();
@@ -179,7 +178,6 @@ public class FSKDecoder {
 			mThread = new Thread(mProcessor);
 			mThread.setPriority(Thread.MIN_PRIORITY);
 			mThread.start();
-			Log.d("WaterLevel", "start mProcessor");
 		}
 	}
 	
@@ -298,8 +296,6 @@ public class FSKDecoder {
 	 * @return samples space left in the buffer
 	 */
 	public int appendSignal(short[] data) {
-		Log.d("WaterLevel", "in appendSignal");
-		
 		synchronized (mSignal) {
 			short[] monoData;
 			
@@ -441,14 +437,11 @@ public class FSKDecoder {
 	}
 	
 	protected void flushData() {
-		Log.d("WaterLevel", "Start");
 		if (mDataLength > 0) {
 			int[] data = new int[mDataLength];
-			Log.d("WaterLevel", "Before For");
-			
+
 			for (int i = 0; i < mDataLength; i++) {
 				data[i] = mData.get(i);
-				Log.d("WaterLevel", data[i] + "");
 			}
 			
 			allocateBufferData();
@@ -462,7 +455,6 @@ public class FSKDecoder {
 	///
 	
 	protected void processIterationSearch() {
-		Log.d("WaterLevel", "in processIterationSearch");
 		if (mSignalPointer <= mSignalEnd-mConfig.samplesPerBit) {
 			
 			short[] frameData = getFrameData(mSignalPointer);
@@ -498,8 +490,7 @@ public class FSKDecoder {
 	}
 	
 	protected void processIterationDecode() {
-		Log.d("WaterLevel", "in processIterationDecode");
-		
+
 		if (mSignalPointer <= mSignalEnd-mConfig.samplesPerBit) {
 	
 			short[] frameData = getFrameData(mSignalPointer);
@@ -525,7 +516,7 @@ public class FSKDecoder {
 			}
 			else if (mCurrentBit == mConfig.packetLength && state.equals(STATE.HIGH)) {
 				//end bit
-				
+
 				try {
 					mData.put(Integer.parseInt(mBitBuffer.toString(), 2));
 
