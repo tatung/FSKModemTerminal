@@ -523,7 +523,7 @@ public class FSKDecoder {
 				//go searching for a new transmission
 				setStatus(DecoderStatus.SEARCHING_START_BIT);
 			}
-			else if (mCurrentBit == 9 && state.equals(STATE.HIGH)) {
+			else if (mCurrentBit == mConfig.packetLength && state.equals(STATE.HIGH)) {
 				//end bit
 				
 				try {
@@ -543,7 +543,7 @@ public class FSKDecoder {
 				
 				mCurrentBit = 0;
 			}
-			else if (mCurrentBit > 0 && mCurrentBit < 9 && (state.equals(STATE.HIGH) || state.equals(STATE.LOW))) {
+			else if (mCurrentBit > 0 && mCurrentBit < mConfig.packetLength && (state.equals(STATE.HIGH) || state.equals(STATE.LOW))) {
 				
 				mBitBuffer.insert(0, (state.equals(STATE.HIGH) ? 1 : 0));
 				

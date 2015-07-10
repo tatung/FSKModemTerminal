@@ -102,6 +102,8 @@ public class FSKConfig {
 
 	public int rmsSilenceThreshold;
 
+	public int packetLength = 33; // 32bits data + 1 final push bit
+
 	public FSKConfig(int sampleRate, int pcmFormat, int channels,
 			int modemMode, int threshold) throws IOException {
 		this.sampleRate = sampleRate;
