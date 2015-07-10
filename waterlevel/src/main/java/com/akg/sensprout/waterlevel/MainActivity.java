@@ -20,6 +20,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import bg.cytec.android.fskmodem.FSKConfig;
 import bg.cytec.android.fskmodem.FSKDecoder;
@@ -43,6 +45,10 @@ public class MainActivity extends ActionBarActivity {
     protected ScrollView mScroll;
     protected TextView mTerminal;
     protected EditText mInput;
+
+    private final String dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+    private final SimpleDateFormat df = new SimpleDateFormat(dateTimeFormat);
+    private final Calendar calendar = Calendar.getInstance();
 
     protected Runnable mRecordFeed = new Runnable() {
 
@@ -164,10 +170,9 @@ public class MainActivity extends ActionBarActivity {
                 //final String text = new String(newData);
                 String tmp = "";
                 for(int d : newData){
-                    tmp += d + "\n";
+                    tmp += df.format(calendar.getTime())+ ": " + d + "\n";
                 }
                 final String text = tmp;
-                Log.d("WaterLevel2", text);
                 runOnUiThread(new Runnable() {
                     public void run() {
 

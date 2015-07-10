@@ -527,7 +527,7 @@ public class FSKDecoder {
 				//end bit
 				
 				try {
-					mData.put((int) Integer.parseInt(mBitBuffer.toString(), 2));
+					mData.put(Integer.parseInt(mBitBuffer.toString(), 2));
 
 					mDataLength++;
 					

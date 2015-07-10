@@ -8,7 +8,6 @@ int rxLed = 12;
 
 void setup()
 {
-  Serial.begin(57600);
   modem.begin(); // setup()でbeginをコールする
   pinMode(txLed, OUTPUT);
   pinMode(rxLed, OUTPUT);
@@ -16,38 +15,33 @@ void setup()
 
 void loop()
 {
-  while (modem.available()) { //iPhoneからデータ受信しているか確認
-    blinkLed(rxLed);
-    int c = modem.read(); //1byteリード
-    if (isprint(c)) {
-      Serial.println((char)c); //PCに送信
-    }
-    else {
-      Serial.print("("); //表示できない文字はHexで表示
-      Serial.print(c, HEX);
-      Serial.print(")");
-    }
-  }
-  while (Serial.available()) { //PCからデータを受信しているか確認
-    blinkLed(txLed);
-    char c = Serial.read(); //1byteリード
-    modem.write(c); //iPhoneに送信
+//  while (modem.available()) { //iPhoneからデータ受信しているか確認
+//    blinkLed(rxLed);
+//    int c = modem.read(); //1byteリード
+//    if (isprint(c)) {
+//      Serial.println((char)c); //PCに送信
+//    }
+//    else {
+//      Serial.print("("); //表示できない文字はHexで表示
+//      Serial.print(c, HEX);
+//      Serial.print(")");
+//    }
+//  }
+//  while (Serial.available()) { //PCからデータを受信しているか確認
+//    blinkLed(txLed);
+//    char c = Serial.read(); //1byteリード
+//    modem.write(c); //iPhoneに送信
+//
+//  }
 
-  }
+    blinkLed(txLed);
+    modem.writeLong(1234);
+    delay(4000);
+    modem.writeLong(5436);
+    delay(4000);
+    modem.writeLong(58673);
+    delay(4000);
   
-//      blinkLed();
-//  modem.write('a');
-//  delayMicroseconds(delayTime);
-//  modem.write('b');
-//  delayMicroseconds(delayTime);
-//  modem.write('c');
-//  delayMicroseconds(delayTime);
-//  modem.write('d');
-//  delayMicroseconds(delayTime);
-//  modem.write('e');
-//  delayMicroseconds(delayTime);
-//  modem.write(' ');
-//  delay(100);
 }
 
 void blinkLed(int led){
