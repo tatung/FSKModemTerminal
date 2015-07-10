@@ -422,5 +422,5 @@ size_t SoftModemLong::writeLong(const uint32_t *buffer, size_t size)
 
 size_t SoftModemLong::writeLong(uint32_t data)
 {
-	return writeLong(&data, 4);
+	return writeLong(&data, 1);
 }

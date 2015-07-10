@@ -36,11 +36,11 @@ void loop()
 
     blinkLed(txLed);
     modem.writeLong(1234);
+//    delay(10);
+    modem.writeLong(5436);
+//    delay(10);
+    modem.writeLong(58673);
     delay(1000);
-//    modem.writeLong(5436);
-//    delay(1000);
-//    modem.writeLong(58673);
-//    delay(1000);
   
 }
 
