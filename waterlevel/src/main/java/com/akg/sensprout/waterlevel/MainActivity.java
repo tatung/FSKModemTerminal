@@ -167,11 +167,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void decoded(int[] newData) {
 
-                DataLogger dataLogger = DataLogger.getInstance(MainActivity.this.getApplicationContext());
+                //DataLogger dataLogger = DataLogger.getInstance(MainActivity.this.getApplicationContext());
 
                 String tmp = "";
                 for(int d : newData){
-                    dataLogger.save(mSensorID, df.format(Calendar.getInstance().getTime()), d);
+//                    dataLogger.save(mSensorID, df.format(Calendar.getInstance().getTime()), d);
 
                     tmp += df.format(Calendar.getInstance().getTime())+ ": " + d + "\n";
                 }
