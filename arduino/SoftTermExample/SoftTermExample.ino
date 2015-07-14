@@ -1,10 +1,12 @@
 #include "SoftModemLong.h" //ライブラリをインクルード
 #include <ctype.h>
+#include "CapacitiveSensor.h"
 
 SoftModemLong modem; //SoftModemのインスタンスを作る
 //int delayTime = 1000;
 int txLed = 13;
 int rxLed = 12;
+CapacitiveSensor   cs_4_2 = CapacitiveSensor(4,2);        // 10M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired
 
 void setup()
 {
@@ -35,12 +37,13 @@ void loop()
 //  }
 
     blinkLed(txLed);
-    modem.writeLong(1234);
-//    delay(10);
-    modem.writeLong(5436);
-//    delay(10);
-    modem.writeLong(58673);
-    delay(1000);
+    long total1 =  cs_4_2.capacitiveSensor(30);
+    modem.writeLong(total1);
+////    delay(10);
+//    modem.writeLong(5436);
+////    delay(10);
+//    modem.writeLong(58673);
+    delay(100);
   
 }
 

@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.akg.sensprout.waterlevel.utils.DataLogger;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +31,8 @@ import bg.cytec.android.fskmodem.FSKEncoder;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private String mSensorID;
 
     protected FSKConfig mConfig;
     protected FSKEncoder mEncoder;
@@ -70,6 +74,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mSensorID = "NONAME";
 
         // INIT VIEWS
 
@@ -161,9 +167,12 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void decoded(int[] newData) {
 
-                //final String text = new String(newData);
+                DataLogger dataLogger = DataLogger.getInstance(MainActivity.this.getApplicationContext());
+
                 String tmp = "";
                 for(int d : newData){
+                    dataLogger.save(mSensorID, df.format(Calendar.getInstance().getTime()), d);
+
                     tmp += df.format(Calendar.getInstance().getTime())+ ": " + d + "\n";
                 }
                 final String text = tmp;
